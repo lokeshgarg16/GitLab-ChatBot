@@ -1,0 +1,21 @@
+services:
+  - type: web_service
+    name: gitlab-rag-backend
+    env: docker
+    plan: starter
+    dockerfilePath: backend/Dockerfile
+    envVars:
+      - key: GEMINI_API_KEY
+        fromSecret: GEMINI_API_KEY
+      - key: REDIS_URL
+        value: redis://redis:6379/0
+      - key: CHROMA_PERSIST_DIRECTORY
+        value: ./data/chroma
+      - key: GEMINI_MODEL
+        value: gemini-1.5-pro
+  - type: static_site
+    name: gitlab-rag-frontend
+    env: node
+    plan: starter
+    buildCommand: npm install && npm run build
+    publishPath: frontend/dist

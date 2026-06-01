@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env
+.env.*
+
+# Node
+node_modules/
+dist/
+build/
+
+# Chroma data
+backend/data/
+
+# Logs
+*.log
+
+.venv/
+backend/.venv/
+node_modules/
+frontend/node_modules/
+.env
+__pycache__/
+*.pyc
+chroma_db/
+backend/data/chroma/
