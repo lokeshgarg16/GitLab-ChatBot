@@ -145,3 +145,20 @@ Delete documents from ChromaDB by source name.
 - If upload fails, make sure `python-multipart` and `pdfplumber` are installed in `backend/requirements.txt`.
 - If the frontend cannot reach the backend, verify `VITE_API_URL` or the default backend URL `http://localhost:8000`.
 - If Chroma storage is not persisted, ensure `CHROMA_PERSIST_DIRECTORY` is writable.
+
+## Recommended Deployment (Render)
+
+This project is ready to deploy on Render for a simple, managed experience (both backend and frontend). The repo includes `render.yaml` which configures a Docker backend service and a static frontend site.
+
+Quick steps:
+
+1. Sign in to Render and connect your GitHub repository.
+2. Choose to create services from `render.yaml` (Render will detect and use the manifest).
+3. Add a secret `GEMINI_API_KEY` in Render for the backend service.
+4. Provision Redis on Render or set `REDIS_URL` to an external Redis provider (e.g., Upstash).
+5. Deploy — Render will build backend from `backend/Dockerfile` and frontend from `frontend` config.
+
+Alternatives:
+- Frontend on Vercel + Backend on Render (set `VITE_API_URL` accordingly).
+- Deploy with Docker Compose / Kubernetes on your own cloud provider if you need full control.
+

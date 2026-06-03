@@ -34,3 +34,9 @@ async def shutdown_event():
 
 if __name__ == "__main__":
     uvicorn.run("app.main:app", host=settings.host, port=settings.port, reload=settings.environment == "development")
+
+allow_origins=[
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://your-vercel-app.vercel.app",
+]
