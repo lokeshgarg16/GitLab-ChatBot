@@ -8,10 +8,17 @@ from app.api.routers.health import router as health_router
 from app.api.routers.upload import router as upload_router
 from app.api.routers.debug import router as debug_router
 
+# CORS configuration for development and production
+allow_origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://your-vercel-app.vercel.app",  # Update with your actual Vercel frontend URL
+]
+
 app = FastAPI(title=settings.app_name)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allow_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -34,9 +41,3 @@ async def shutdown_event():
 
 if __name__ == "__main__":
     uvicorn.run("app.main:app", host=settings.host, port=settings.port, reload=settings.environment == "development")
-
-allow_origins=[
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "https://your-vercel-app.vercel.app",
-]

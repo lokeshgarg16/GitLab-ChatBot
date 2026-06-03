@@ -4,26 +4,28 @@ __pycache__/
 *.pyo
 *.pyd
 venv/
+.venv/
+backend/.venv/
 .env
+backend/.env
 .env.*
 
 # Node
 node_modules/
+frontend/node_modules/
 dist/
 build/
 
 # Chroma data
+chroma_db/
 backend/data/
+backend/data/chroma/
 
 # Logs
 *.log
 
-.venv/
-backend/.venv/
-node_modules/
-frontend/node_modules/
-.env
-__pycache__/
-*.pyc
-chroma_db/
-backend/data/chroma/
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
