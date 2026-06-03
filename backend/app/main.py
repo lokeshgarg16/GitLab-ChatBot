@@ -43,7 +43,7 @@ if __name__ == "__main__":
     uvicorn.run("app.main:app", host=settings.host, port=settings.port, reload=settings.environment == "development")
 
 allow_origins=[
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
+    "http://localhost:5174",
+    "http://127.0.0.1:5174",
     "https://git-lab-chat-bot-git-main-lokeshagarwal2003-7359s-projects.vercel.app/",
 ]
