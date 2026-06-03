@@ -29,12 +29,14 @@ jobs:
           python -m pip install pyflakes >/dev/null || true
           python -m pyflakes app || true
 
-      - name: Build frontend
-        working-directory: frontend
+      - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: |
+
+      - name: Build frontend
+        working-directory: frontend
+        run: |
           npm ci
           npm run build
 
