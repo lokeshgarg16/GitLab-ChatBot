@@ -12,6 +12,7 @@ from app.api.routers.debug import router as debug_router
 allow_origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://git-lab-chat-bot.vercel.app",
     "https://git-lab-chat-bot-git-main-lokeshagarwal2003-7359s-projects.vercel.app",
 ]
 
