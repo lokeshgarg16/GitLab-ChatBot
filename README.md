@@ -1,119 +1,353 @@
-# GitLab Handbook RAG Chatbot
+# 🤖 GitLab Handbook Assistant
 
-A Retrieval-Augmented Generation (RAG) chatbot built for GitLab Handbook and Direction content.
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green)
+![React](https://img.shields.io/badge/React-Frontend-61DAFB)
+![Gemini](https://img.shields.io/badge/Google-Gemini-orange)
+![ChromaDB](https://img.shields.io/badge/ChromaDB-VectorDB-purple)
+![Redis](https://img.shields.io/badge/Redis-Memory-red)
+![License](https://img.shields.io/badge/License-MIT-brightgreen)
 
-## Project Overview
+An AI-powered Retrieval-Augmented Generation (RAG) chatbot designed to help employees and aspiring employees interact with GitLab's Handbook and Direction pages through natural language conversations.
 
-- **Backend:** FastAPI + Python
-- **Frontend:** React + Tailwind CSS + Vite
-- **Vector DB:** ChromaDB
-- **LLM / Embeddings:** Google Gemini via LangChain
-- **Memory:** Redis optional conversation memory
-- **Features:** document upload, delete, list, chat history, source citations
+The chatbot combines semantic search, vector databases, Google Gemini, and modern web technologies to provide accurate, context-aware responses while supporting document uploads, chat history, source citations, and dynamic knowledge management.
 
-## Folder Structure
+---
 
-- `backend/` — FastAPI backend, ingestion scripts, and API routers
-- `frontend/` — React chat UI and upload UI
-- `docker-compose.yml` — optional local services
-- `vercel.json` — frontend deployment config
-- `render.yaml` — deploy configuration
+# 🚀 Live Demo
 
-## Features
+### Frontend
 
-- Chat UI with saved sessions and dark mode
-- RAG-powered answers with source citations
-- Upload documents from the UI
-- Supported upload formats: `.txt`, `.md`, `.html`, `.pdf`, `.csv`
-- UI shows uploaded documents and chunk counts
-- Delete uploaded documents mid-chat and flush them from ChromaDB
-- Redis-backed memory is optional and fails gracefully if unavailable
+https://git-lab-chat-bot.vercel.app
 
-## Getting Started
+### Backend API
 
-### 1. Clone the repository
+https://gitlab-chatbot-1.onrender.com
 
-```bash
-git clone https://github.com/your-org/gitlab-rag-chatbot.git
-cd gitlab-rag-chatbot
+### API Documentation
+
+https://gitlab-chatbot-1.onrender.com/docs
+
+---
+
+# 📖 Project Overview
+
+GitLab follows a "Build in Public" philosophy where company processes, strategies, and documentation are openly shared through the GitLab Handbook and Direction pages.
+
+This project was built to make that information easier to access through a conversational AI assistant.
+
+Instead of manually searching through hundreds of documentation pages, users can ask questions naturally and receive accurate responses powered by Retrieval-Augmented Generation (RAG).
+
+---
+
+# ✨ Key Features
+
+## 🔍 AI-Powered Retrieval
+
+* Retrieval-Augmented Generation (RAG)
+* Semantic Search using Vector Embeddings
+* Context-Aware Question Answering
+* Google Gemini Integration
+* Follow-up Question Suggestions
+* Confidence Scoring
+* Source-Based Answer Retrieval
+
+---
+
+## 📂 Document Management
+
+### Upload Documents
+
+Users can upload:
+
+* PDF
+* CSV
+* TXT
+* Markdown
+* HTML
+
+documents directly from the UI.
+
+### Automatic Processing
+
+Uploaded documents are:
+
+* Extracted
+* Cleaned
+* Chunked
+* Embedded
+* Stored in ChromaDB
+
+automatically.
+
+### Dynamic Knowledge Base
+
+* View uploaded documents
+* See chunk counts
+* Delete documents during active chat sessions
+* Remove vectors instantly from ChromaDB
+
+---
+
+## 💬 Conversational Features
+
+* Multi-turn conversations
+* Session management
+* Chat history support
+* Redis-based memory
+* Context retention
+* Follow-up recommendations
+
+---
+
+## 🎨 Modern User Interface
+
+* React + Vite Frontend
+* Responsive Design
+* Real-Time Updates
+* Upload Interface
+* Document Management Panel
+* Error Handling
+* Clean User Experience
+
+---
+
+# 📸 Screenshots
+
+## Chat Interface
+
+![Chat UI](assets/chat-ui.png)
+
+
+---
+
+# 🏗️ System Architecture
+
+```text
+                    User Query
+                         │
+                         ▼
+              React Frontend (Vite)
+                         │
+                         ▼
+                 FastAPI Backend
+                         │
+         ┌───────────────┼───────────────┐
+         │                               │
+         ▼                               ▼
+   Redis Memory                 ChromaDB Vector Store
+                                         │
+                                         ▼
+                              Gemini Embeddings
+                                         │
+                                         ▼
+                            Semantic Similarity Search
+                                         │
+                                         ▼
+                              Relevant Context Retrieval
+                                         │
+                                         ▼
+                               Gemini 2.5 Flash
+                                         │
+                                         ▼
+                              Generated Response
+                                         │
+                                         ▼
+                    Sources + Confidence + Suggestions
 ```
 
-### 2. Configure environment variables
+---
 
-Create `backend/.env` with your values, for example:
+# 🛠️ Technology Stack
+
+## Frontend
+
+* React.js
+* Vite
+* Axios
+* Tailwind CSS
+
+## Backend
+
+* FastAPI
+* Python
+* Uvicorn
+
+## AI & Machine Learning
+
+* Google Gemini 2.5 Flash
+* Gemini Embeddings
+* LangChain
+* Retrieval-Augmented Generation (RAG)
+
+## Databases & Storage
+
+* ChromaDB
+* Redis
+
+## Deployment
+
+* Vercel
+* Render
+
+---
+
+# 📂 Project Structure
+
+```text
+GitLab-ChatBot/
+│
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   ├── components/
+│   ├── api.js
+│   └── package.json
+│
+├── backend/
+│   ├── app/
+│   │   ├── api/
+│   │   ├── core/
+│   │   ├── db/
+│   │   ├── services/
+│   │   ├── utils/
+│   │   └── main.py
+│   │
+│   ├── uploads/
+│   └── requirements.txt
+│
+├── requirements.txt
+├── docker-compose.yml
+├── render.yaml
+├── vercel.json
+└── README.md
+```
+
+---
+
+# ⚙️ Local Setup
+
+## Clone Repository
+
+```bash
+git clone https://github.com/lokeshgarg16/GitLab-ChatBot.git
+
+cd GitLab-ChatBot
+```
+
+---
+
+## Backend Setup
+
+```bash
+cd backend
+
+python -m venv .venv
+
+# Windows
+.venv\Scripts\activate
+
+# Linux/Mac
+source .venv/bin/activate
+
+pip install -r ../requirements.txt
+```
+
+---
+
+## Environment Variables
+
+Create:
+
+```bash
+backend/.env
+```
 
 ```env
-GEMINI_API_KEY=your_gemini_api_key
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+
 REDIS_URL=redis://localhost:6379/0
+
 CHROMA_PERSIST_DIRECTORY=./data/chroma
+
 CHROMA_COLLECTION_NAME=gitlab_handbook
+
 MAX_CHUNK_SIZE=500
+
 CHUNK_OVERLAP=100
 ```
 
-### 3. Install dependencies
+---
 
-#### Backend
-
-```bash
-cd backend
-python -m pip install -r requirements.txt
-```
-
-#### Frontend
+## Run Backend
 
 ```bash
-cd ../frontend
-npm install
+uvicorn app.main:app --reload
 ```
 
-### 4. Run the backend
+Backend:
 
-```bash
-cd backend
-python -m uvicorn app.main:app --reload
+```text
+http://localhost:8000
 ```
 
-### 5. Run the frontend
+Swagger:
+
+```text
+http://localhost:8000/docs
+```
+
+---
+
+## Frontend Setup
 
 ```bash
 cd frontend
+
+npm install
+```
+
+Create:
+
+```bash
+frontend/.env
+```
+
+```env
+VITE_API_URL=http://localhost:8000
+```
+
+Run:
+
+```bash
 npm run dev
 ```
 
-Then open the browser at `http://localhost:5173`.
+Frontend:
 
-## Upload and Document Management
+```text
+http://localhost:5173
+```
 
-### Upload documents
+---
 
-Use the frontend Upload button to add files directly into ChromaDB. Supported file types:
+# 📡 API Endpoints
 
-- `.txt`
-- `.md` / `.markdown`
-- `.html` / `.htm`
-- `.pdf`
-- `.csv`
+## Health Check
 
-### See uploaded documents
+```http
+GET /health/
+```
 
-The UI includes an "Uploaded documents" panel showing current sources and chunk counts.
+---
 
-### Delete uploaded documents mid-chat
+## Chat Endpoint
 
-Use the Delete button next to any uploaded document to remove its vectors from ChromaDB.
+```http
+POST /chat/
+```
 
-## API Endpoints
-
-### `GET /health/`
-
-Health check endpoint.
-
-### `POST /chat/`
-
-Query the chatbot.
-
-Example request:
+Request:
 
 ```json
 {
@@ -122,43 +356,98 @@ Example request:
 }
 ```
 
-### `POST /upload/`
+---
 
-Upload a file using multipart form data.
+## Upload Document
 
-### `GET /upload/`
+```http
+POST /upload/
+```
 
-List uploaded document sources and their chunk counts.
+---
 
-### `DELETE /upload/{source}`
+## List Uploaded Documents
 
-Delete documents from ChromaDB by source name.
+```http
+GET /upload/
+```
 
-## Notes
+---
 
-- Chroma persistence is used for uploaded document vectors.
-- The frontend automatically refreshes uploaded document state after upload and deletion.
-- If Redis is unavailable, chat memory will still work without failing.
+## Delete Document
 
-## Troubleshooting
+```http
+DELETE /upload/{source}
+```
 
-- If upload fails, make sure `python-multipart` and `pdfplumber` are installed in `backend/requirements.txt`.
-- If the frontend cannot reach the backend, verify `VITE_API_URL` or the default backend URL `http://localhost:8000`.
-- If Chroma storage is not persisted, ensure `CHROMA_PERSIST_DIRECTORY` is writable.
+---
 
-## Recommended Deployment (Render)
+# 🔄 How It Works
 
-This project is ready to deploy on Render for a simple, managed experience (both backend and frontend). The repo includes `render.yaml` which configures a Docker backend service and a static frontend site.
+## Document Ingestion Pipeline
 
-Quick steps:
+1. Upload Document
+2. Extract Text
+3. Clean Content
+4. Split into Chunks
+5. Generate Embeddings
+6. Store in ChromaDB
 
-1. Sign in to Render and connect your GitHub repository.
-2. Choose to create services from `render.yaml` (Render will detect and use the manifest).
-3. Add a secret `GEMINI_API_KEY` in Render for the backend service.
-4. Provision Redis on Render or set `REDIS_URL` to an external Redis provider (e.g., Upstash).
-5. Deploy — Render will build backend from `backend/Dockerfile` and frontend from `frontend` config.
+---
 
-Alternatives:
-- Frontend on Vercel + Backend on Render (set `VITE_API_URL` accordingly).
-- Deploy with Docker Compose / Kubernetes on your own cloud provider if you need full control.
+## Question Answering Pipeline
+
+1. User submits question
+2. Generate query embedding
+3. Search ChromaDB
+4. Retrieve relevant chunks
+5. Build contextual prompt
+6. Generate response using Gemini
+7. Return answer with sources and confidence score
+
+---
+
+# 🎯 Additional Enhancements
+
+Beyond the assignment requirements, the following features were implemented:
+
+* Dynamic Document Upload
+* Mid-Chat Document Deletion
+* Source Citations
+* Confidence Scores
+* Follow-Up Suggestions
+* Redis Conversation Memory
+* Persistent Vector Storage
+* Production Deployment
+* CORS Security
+* Real-Time Knowledge Base Updates
+
+---
+
+# 📊 Future Improvements
+
+* User Authentication
+* Multi-User Sessions
+* Role-Based Access Control
+* Analytics Dashboard
+* Hybrid Search
+* GitLab Live Data Synchronization
+* Fine-Tuned Domain Models
+
+---
+
+# 👨‍💻 Author
+
+### Lokesh Agarwal
+
+B.Tech Electronics & Communication Engineering
+
+Malaviya National Institute of Technology (MNIT) Jaipur
+
+GitHub:
+https://github.com/lokeshgarg16
+
+LinkedIn:
+https://www.linkedin.com/in/lokeshagarwal1612/
+
 
