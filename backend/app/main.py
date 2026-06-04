@@ -7,6 +7,7 @@ from app.core.logging import logger
 from app.api.routers.chat import router as chat_router
 from app.api.routers.health import router as health_router
 from app.api.routers.upload import router as upload_router
+from app.api.routers.ingest import router as ingest_router
 from app.api.routers.debug import router as debug_router
 
 allow_origins = [
@@ -29,6 +30,7 @@ app.add_middleware(
 app.include_router(health_router)
 app.include_router(chat_router)
 app.include_router(upload_router)
+app.include_router(ingest_router)
 app.include_router(debug_router)
 
 

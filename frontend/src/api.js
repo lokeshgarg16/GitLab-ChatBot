@@ -43,6 +43,16 @@ export async function uploadDocument(file) {
   }
 }
 
+export async function ingestGitLabPages() {
+  try {
+    const response = await apiClient.post("/ingest/gitlab");
+    return response.data;
+  } catch (error) {
+    console.error("GitLab ingest API error:", error.response?.data || error.message);
+    throw error;
+  }
+}
+
 export async function getUploadedDocuments() {
   try {
     const response = await apiClient.get("/upload/");

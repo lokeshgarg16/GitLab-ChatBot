@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { fetchChat, listUploadedDocs, deleteUploadedDoc, uploadDocument } from './api'
+import { fetchChat, listUploadedDocs, deleteUploadedDoc, uploadDocument, ingestGitLabPages } from './api'
 import { useLocalStorage } from './hooks/useLocalStorage'
 import Sidebar from './components/Sidebar'
 import ChatInput from './components/ChatInput'
@@ -93,41 +93,58 @@ function App() {
 
   // handle upload input change
   const handleUploadChange = async (event) => {
-  const file = event.target.files && event.target.files[0]
-  if (!file) return
+    const file = event.target.files && event.target.files[0]
+    if (!file) return
 
-  setDocsLoading(true)
+    setDocsLoading(true)
 
-  try {
-    await uploadDocument(file)
-    await loadUploadedDocs()
-  } catch (err) {
-    console.error('Upload failed', err)
-    alert('Upload failed. Please try again.')
-  } finally {
-    setDocsLoading(false)
-    event.target.value = ''
+    try {
+      await uploadDocument(file)
+      await loadUploadedDocs()
+    } catch (err) {
+      console.error('Upload failed', err)
+      alert('Upload failed. Please try again.')
+    } finally {
+      setDocsLoading(false)
+      event.target.value = ''
+    }
   }
-}
+
+  const handleImportGitLabHandbook = async () => {
+    setDocsLoading(true)
+
+    try {
+      const result = await ingestGitLabPages()
+      await loadUploadedDocs()
+      alert(`Imported ${result.pages} GitLab pages and ${result.chunks} chunks.`)
+    } catch (err) {
+      console.error('GitLab handbook ingestion failed', err)
+      alert('Failed to import GitLab handbook pages. Please try again.')
+    } finally {
+      setDocsLoading(false)
+    }
+  }
+
   const handleDeleteUploadedDoc = async (source) => {
-  const confirmed = window.confirm(
-    `Delete '${source}' from the document index? This will remove its vectors from Chroma.`
-  )
+    const confirmed = window.confirm(
+      `Delete '${source}' from the document index? This will remove its vectors from Chroma.`
+    )
 
-  if (!confirmed) return
+    if (!confirmed) return
 
-  setDocsLoading(true)
+    setDocsLoading(true)
 
-  try {
-    await deleteUploadedDoc(source)
-    await loadUploadedDocs()
-  } catch (err) {
-    console.error('Delete uploaded doc failed', err)
-    alert('Failed to delete uploaded document.')
-  } finally {
-    setDocsLoading(false)
+    try {
+      await deleteUploadedDoc(source)
+      await loadUploadedDocs()
+    } catch (err) {
+      console.error('Delete uploaded doc failed', err)
+      alert('Failed to delete uploaded document.')
+    } finally {
+      setDocsLoading(false)
+    }
   }
-}
+
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
       <div className="mx-auto flex min-h-screen max-w-7xl flex-col gap-6 px-4 py-6 lg:px-8">
@@ -144,6 +161,12 @@ function App() {
               className="rounded-2xl border border-slate-800 bg-slate-900 px-4 py-2 text-sm text-slate-200 hover:border-indigo-500"
             >
               Upload Document
+            </button>
+            <button
+              onClick={handleImportGitLabHandbook}
+              className="rounded-2xl border border-slate-800 bg-slate-900 px-4 py-2 text-sm text-slate-200 hover:border-indigo-500"
+            >
+              Import GitLab Handbook
             </button>
             <button
               onClick={() => {
